@@ -7,9 +7,9 @@
 	</head>
 	<body>
 		<div>
-			<form action="/users/upload/" method="post" class="users_form">
+			<form action="/users/upload/" method="post" class="users_form" name="up"  enctype="multipart/form-data">
 				<input type="file" name="members" class="member_file" />
-				<button class="upload_button">上传</button>
+				<input type="submit" value="add" name="submit" />
 			</form>
 		</div>
 		<script type="text/javascript" src="/scripts/upload.js"></script>
