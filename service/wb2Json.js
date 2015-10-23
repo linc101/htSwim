@@ -1,12 +1,13 @@
-var sqlExcutor=require("../util/mysql");
+function ParseService(){
 
-function UserService(){
+	this.toJson=function(data,itemCallback){
+		var sheets = data.SheetNames;
+		for(var i = 0,l=sheets.length;i<l;i++){
+			var tpsh = data.sheets[sheets[i]],
+			index = tpsh['!ref'];
 
-	this.addMember=function(data,callback){
-		data.push(new Date());
-		var sql = "insert into member(name, workNo, gender, workGroup, tel,type,isCharged,note,time) values(?,?,?,?,?,?,?,?,?)";
-		console.log(data);
-		sqlExcutor.excute(sql, data, callback);
+		}
+
 	};
 
 	// this.validateUser=function(username,passwd,callback){
@@ -25,4 +26,4 @@ function UserService(){
 	// };
 }
 
-module.exports=UserService;
+module.exports=ParseService;
