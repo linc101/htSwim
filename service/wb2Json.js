@@ -1,12 +1,28 @@
 function ParseService(){
 
 	this.toJson=function(data,itemCallback){
-		var sheets = data.SheetNames;
+		var sheets = data.SheetNames,
+		obj = {};
 		for(var i = 0,l=sheets.length;i<l;i++){
-			var tpsh = data.sheets[sheets[i]],
-			index = tpsh['!ref'];
-
+			var t = obj[sheets[i]] = [],
+			tpsh = data.Sheets[sheets[i]],
+			index = tpsh['!ref'],
+			start = index.split(':')[0],
+			end = index.split(':')[1],
+			startNum = parseInt(start.substring(1)),
+			endNum = parseInt(end.substring(1)),
+			startCharCode =  start.charCodeAt(0),
+			endCharCode = end.charCodeAt(0);
+			for(var j = 1; j<=endNum;j++){
+				var tmpV = [];
+				for(var k =startCharCode;k<=endCharCode;k++){
+					var index = String.fromCharCode(k)+j;
+					tmpV.push(!!tpsh[index]?tpsh[index].v:'');
+				}
+				t.push(tmpV);
+			}
 		}
+		return obj;
 
 	};
 

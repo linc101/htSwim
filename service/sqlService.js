@@ -5,7 +5,6 @@ function UserService(){
 	this.addMember=function(data,callback){
 		data.push(new Date());
 		var sql = "insert into member(name, workNo, gender, workGroup, tel,type,isCharged,note,time) values(?,?,?,?,?,?,?,?,?)";
-		console.log(data);
 		sqlExcutor.excute(sql, data, callback);
 	};
 
